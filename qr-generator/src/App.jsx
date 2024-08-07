@@ -8,9 +8,7 @@ function App() {
       <header className="App-header">
         <h1>QR Code Generator</h1>
       </header>
-      <main>
-        <QRCodeGenerator />
-      </main>
+      <QRCodeGenerator />
     </div>
   );
 }

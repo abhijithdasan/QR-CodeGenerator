@@ -1,0 +1,92 @@
+/* QRGenerator.css */
+
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+.qr-code-generator {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.qr-code-types {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.qr-code-types button {
+  margin: 0 5px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.qr-code-types button.active {
+  background-color: #0056b3;
+}
+
+.qr-code-types button:hover {
+  background-color: #0056b3;
+}
+
+input, select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.logo-upload {
+  margin-bottom: 1rem;
+}
+
+.qr-code-container {
+  margin: 1rem 0;
+}
+
+.qr-code-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.download-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.download-buttons button {
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.download-buttons button:hover {
+  background-color: #45a049;
+}
