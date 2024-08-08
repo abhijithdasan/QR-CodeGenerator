@@ -1,5 +1,3 @@
-/* QRGenerator.css */
-
 body, html {
   margin: 0;
   padding: 0;
@@ -8,11 +6,11 @@ body, html {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
+  background-color: #f0f0f0; /* Light background for the page */
 }
 
 .qr-code-generator {
-  background-color: white;
+  background: linear-gradient(45deg, #2f4680, #500ae4);
   padding: 2rem;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -21,40 +19,54 @@ body, html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
 }
 
 .qr-code-types {
   display: flex;
   justify-content: center;
   margin-bottom: 1rem;
+  
 }
 
-.qr-code-types button {
-  margin: 0 5px;
-  padding: 8px 16px;
-  font-size: 14px;
+.mode-button {
+  padding: 10px;
+  font-size: 16px;
   cursor: pointer;
-  background-color: #007bff;
-  color: white;
+  background-color: #ffffff;
+  color: #000000;
   border: none;
   border-radius: 4px;
+  margin: 0 5px;
   transition: background-color 0.3s;
 }
 
-.qr-code-types button.active {
-  background-color: #0056b3;
+.mode-button.active {
+  background-color: #ddd;
 }
 
-.qr-code-types button:hover {
-  background-color: #0056b3;
+.mode-button:hover {
+  background-color: #e0e0e0;
 }
 
-input, select {
+.input-section {
   width: 100%;
-  padding: 8px;
   margin-bottom: 1rem;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
+  color: #626262;
+  background-color: #ffffff;
 }
 
 .logo-upload {
@@ -65,28 +77,38 @@ input, select {
   margin: 1rem 0;
 }
 
-.qr-code-container svg {
-  max-width: 100%;
-  height: auto;
-}
-
 .download-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
+  width: 100%;
 }
 
 .download-buttons button {
-  padding: 8px 16px;
+  padding: 10px 20px;
   font-size: 14px;
   cursor: pointer;
-  background-color: #4CAF50;
-  color: white;
+  background-color: #ffffff;
+  color: #000000;
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s;
 }
 
 .download-buttons button:hover {
-  background-color: #45a049;
+  background-color: #f0f0f0;
 }
+
+.download-buttons button:nth-child(2) {
+  background-color: #FF5722; /* Customize button color if needed */
+}
+
+.download-buttons button:nth-child(3) {
+  background-color: #3F51B5; /* Customize button color if needed */
+}
+
+.download-buttons button:nth-child(4) {
+  background-color: #009688; /* Customize button color if needed */
+}
+
+

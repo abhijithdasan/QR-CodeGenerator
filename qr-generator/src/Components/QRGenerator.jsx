@@ -1,6 +1,5 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
-import htmlToImage from 'html-to-image'; // Import html-to-image for downloads
 import './QRGenerator.css'; // Import QRGenerator-specific styles
 import '../App.css'; // Import App-wide styles
 
@@ -8,7 +7,6 @@ const QRGenerator = () => {
   const [mode, setMode] = useState('links'); // 'links' or 'wifi'
   const [input, setInput] = useState('');
   const [logo, setLogo] = useState(null); // State to manage logo
-  const qrRef = useRef(null); // Ref to access QR code container
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
@@ -36,29 +34,23 @@ const QRGenerator = () => {
     return `WIFI:S:${input.ssid};T:${input.encryption};P:${input.password};;`;
   };
 
-  const downloadQRCode = async (format) => {
-    if (qrRef.current) {
-      try {
-        const dataUrl = await htmlToImage.toPng(qrRef.current); // Convert QR code to PNG
-        const link = document.createElement('a');
-        link.href = dataUrl;
-        link.download = `qr-code.${format}`;
-        link.click();
-      } catch (error) {
-        console.error('Error downloading QR code:', error);
-      }
-    }
+  const downloadQRCode = (type) => {
+    const canvas = document.querySelector('canvas');
+    if (!canvas) return;
+
+    const link = document.createElement('a');
+    link.download = `qrcode.${type}`;
+    link.href = canvas.toDataURL(`image/${type}`);
+    link.click();
   };
 
-  const shareQRCode = () => {
-    if (navigator.share) {
-      navigator.share({
-        title: 'QR Code',
-        text: 'Check out this QR code!',
-        url: qrRef.current ? qrRef.current.toDataURL() : '',
-      }).catch(console.error);
-    } else {
-      alert('Sharing not supported on this browser.'); // Fallback
+  const handleShare = () => {
+    // Function to share QR code, could be implemented based on requirements
+    // For demonstration, this just opens a new window with the QR code image
+    const canvas = document.querySelector('canvas');
+    if (canvas) {
+      const imageUrl = canvas.toDataURL('image/png');
+      window.open(imageUrl, '_blank');
     }
   };
 
@@ -114,14 +106,19 @@ const QRGenerator = () => {
       </div>
 
       <div className="logo-upload">
+        <label htmlFor="logo-upload">
+          <i className="fas fa-upload fa-2x" style={{ color: '#ffffff' }}></i> {/* FontAwesome icon */}
+        </label>
         <input
+          id="logo-upload"
           type="file"
           accept="image/*"
           onChange={handleLogoChange}
+          style={{ display: 'none' }} // Hide the actual input
         />
       </div>
 
-      <div className="qr-code-container" ref={qrRef}>
+      <div className="qr-code-container">
         <QRCode
           value={getQRValue()}
           size={256}
@@ -132,10 +129,12 @@ const QRGenerator = () => {
       </div>
 
       <div className="download-buttons">
-        <button onClick={() => downloadQRCode('png')}>Download PNG</button>
-        <button onClick={() => downloadQRCode('jpg')}>Download JPG</button>
-        <button onClick={() => downloadQRCode('svg')}>Download SVG</button>
-        <button onClick={shareQRCode}>Share</button>
+        <button onClick={() => downloadQRCode('jpg')}>JPG</button>
+        <button onClick={() => downloadQRCode('pdf')}>PDF</button>
+        <button onClick={() => downloadQRCode('svg')}>SVG</button>
+        <button onClick={handleShare}>
+          <i className="fas fa-share-alt fa-2x"></i> 
+        </button>
       </div>
     </div>
   );
