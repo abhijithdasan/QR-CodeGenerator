@@ -1,17 +1,24 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUpload, faShareAlt } from '@fortawesome/free-solid-svg-icons';
 import './QRGenerator.css';
 import '../App.css';
 
 const QRGenerator = () => {
   const [mode, setMode] = useState('links');
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState(mode === 'wifi' ? { ssid: '', password: '', encryption: 'WPA' } : '');
   const [logo, setLogo] = useState(null); 
 
-  const handleModeChange = (newMode) => {
-    setMode(newMode);
+const handleModeChange = (newMode) => {
+  setMode(newMode);
+  if (newMode === 'wifi') {
+    setInput({ ssid: '', password: '', encryption: 'WPA' });
+  } else {
     setInput('');
-  };
+  }
+};
+
 
   const handleInputChange = (e) => {
     setInput(e.target.value);
@@ -26,13 +33,15 @@ const QRGenerator = () => {
     }
   };
 
-  const getQRValue = () => {
-    if (mode === 'links') {
-      return input;
-    }
-    // Construct WiFi QR code format
+const getQRValue = () => {
+  if (mode === 'links') {
+    return input;
+  } else if (mode === 'wifi') {
     return `WIFI:S:${input.ssid};T:${input.encryption};P:${input.password};;`;
-  };
+  }
+  return ''; // Return an empty string or handle unexpected mode cases
+};
+
 
   const downloadQRCode = (type) => {
     const canvas = document.querySelector('canvas');
@@ -85,14 +94,17 @@ const QRGenerator = () => {
             <input
               type="text"
               placeholder="SSID"
+              value={input.ssid}
               onChange={(e) => setInput({ ...input, ssid: e.target.value })}
             />
             <input
               type="text"
               placeholder="Password"
+              value={input.password}
               onChange={(e) => setInput({ ...input, password: e.target.value })}
             />
             <select
+              value={input.encryption}
               onChange={(e) => setInput({ ...input, encryption: e.target.value })}
             >
               <option value="WEP">WEP</option>
@@ -104,8 +116,8 @@ const QRGenerator = () => {
       </div>
 
       <div className="logo-upload">
-        <label htmlFor="logo-upload">
-          <i className="fas fa-upload fa-2x" style={{ color: '#ffffff' }}></i> 
+        <label htmlFor="logo-upload"><button className='upload-btn'>
+          <FontAwesomeIcon icon={faUpload} size="2x" style={{ color: '#ffffff' }} /> </button>
         </label>
         <input
           id="logo-upload"
@@ -130,8 +142,9 @@ const QRGenerator = () => {
         <button onClick={() => downloadQRCode('jpg')}>JPG</button>
         <button onClick={() => downloadQRCode('pdf')}>PDF</button>
         <button onClick={() => downloadQRCode('svg')}>SVG</button>
-        <button onClick={handleShare}>
-          <i className="fas fa-share-alt fa-2x"></i> 
+        <button aria-label="Share QR code" onClick={handleShare}>
+        <FontAwesomeIcon icon={faShareAlt} size="2x" />
+ 
         </button>
       </div>
     </div>
