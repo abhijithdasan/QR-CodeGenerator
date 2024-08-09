@@ -114,19 +114,23 @@ const getQRValue = () => {
           </div>
         )}
       </div>
-
       <div className="logo-upload">
-        <label htmlFor="logo-upload"><button className='upload-btn'>
-          <FontAwesomeIcon icon={faUpload} size="2x" style={{ color: '#ffffff' }} /> </button>
-        </label>
+        <button
+          className="upload-btn"
+          type="button"
+          onClick={() => document.getElementById('logo-upload').click()}
+        >
+          <FontAwesomeIcon icon={faUpload} size="2x" style={{ color: '#ffffff' }} />
+        </button>
         <input
           id="logo-upload"
           type="file"
           accept="image/*"
           onChange={handleLogoChange}
-          style={{ display: 'none' }} 
+          style={{ display: 'none' }}
         />
       </div>
+
 
       <div className="qr-code-container">
         <QRCode
