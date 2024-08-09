@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode.react';
-import './QRGenerator.css'; // Import QRGenerator-specific styles
-import '../App.css'; // Import App-wide styles
+import './QRGenerator.css';
+import '../App.css';
 
 const QRGenerator = () => {
-  const [mode, setMode] = useState('links'); // 'links' or 'wifi'
+  const [mode, setMode] = useState('links');
   const [input, setInput] = useState('');
-  const [logo, setLogo] = useState(null); // State to manage logo
+  const [logo, setLogo] = useState(null); 
 
   const handleModeChange = (newMode) => {
     setMode(newMode);
@@ -45,8 +45,6 @@ const QRGenerator = () => {
   };
 
   const handleShare = () => {
-    // Function to share QR code, could be implemented based on requirements
-    // For demonstration, this just opens a new window with the QR code image
     const canvas = document.querySelector('canvas');
     if (canvas) {
       const imageUrl = canvas.toDataURL('image/png');
@@ -107,14 +105,14 @@ const QRGenerator = () => {
 
       <div className="logo-upload">
         <label htmlFor="logo-upload">
-          <i className="fas fa-upload fa-2x" style={{ color: '#ffffff' }}></i> {/* FontAwesome icon */}
+          <i className="fas fa-upload fa-2x" style={{ color: '#ffffff' }}></i> 
         </label>
         <input
           id="logo-upload"
           type="file"
           accept="image/*"
           onChange={handleLogoChange}
-          style={{ display: 'none' }} // Hide the actual input
+          style={{ display: 'none' }} 
         />
       </div>
 
