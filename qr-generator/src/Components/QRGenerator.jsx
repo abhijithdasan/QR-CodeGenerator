@@ -125,7 +125,7 @@ const getQRValue = () => {
         <input
           id="logo-upload"
           type="file"
-          accept="image/*"
+          accept="image/*" 
           onChange={handleLogoChange}
           style={{ display: 'none' }}
         />
