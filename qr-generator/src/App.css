@@ -4,10 +4,12 @@
   text-align: center;
 }
 
+
 .App-header {
   background-color:#fff;
   padding: 20px;
   color: white;
+
 }
 
 .qr-code-generator {
