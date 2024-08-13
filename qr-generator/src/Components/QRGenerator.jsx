@@ -97,6 +97,7 @@ const getQRValue = () => {
               value={input.ssid}
               onChange={(e) => setInput({ ...input, ssid: e.target.value })}
             />
+            
             <input
               type="text"
               placeholder="Password"
@@ -120,6 +121,7 @@ const getQRValue = () => {
           type="button"
           onClick={() => document.getElementById('logo-upload').click()}
         >
+
           <FontAwesomeIcon icon={faUpload} size="2x" style={{ color: '#ffffff' }} />
         </button>
         <input
@@ -130,7 +132,6 @@ const getQRValue = () => {
           style={{ display: 'none' }}
         />
       </div>
-
 
       <div className="qr-code-container">
         <QRCode
