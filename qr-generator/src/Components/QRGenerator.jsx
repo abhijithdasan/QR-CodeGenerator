@@ -76,6 +76,8 @@ const getQRValue = () => {
         >
           WiFi
         </button>
+        <button>
+        </button>
       </div>
 
       <div className="input-section">
