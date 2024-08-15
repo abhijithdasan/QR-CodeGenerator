@@ -76,8 +76,6 @@ const getQRValue = () => {
         >
           WiFi
         </button>
-        <button>
-        </button>
       </div>
 
       <div className="input-section">
@@ -145,6 +143,7 @@ const getQRValue = () => {
         />
       </div>
 
+      
       <div className="download-buttons">
         <button onClick={() => downloadQRCode('jpg')}>JPG</button>
         <button onClick={() => downloadQRCode('pdf')}>PDF</button>
