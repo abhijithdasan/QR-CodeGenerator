@@ -142,8 +142,7 @@ const getQRValue = () => {
           imageSettings={logo ? { src: logo, height: 60, width: 60, excavate: true } : null}
         />
       </div>
-
-      
+            
       <div className="download-buttons">
         <button onClick={() => downloadQRCode('jpg')}>JPG</button>
         <button onClick={() => downloadQRCode('pdf')}>PDF</button>
